@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+import "./App.css";
 
-function App() {
+import { retrievePlaylist } from "./firebase/firebase.utils.js";
+// import { getData } from "./spotify/spotify.utils";
+import { addPlaylist } from "./redux/playlists/playlists.actions";
+
+import Homepage from "./pages/homepage/homepage.component";
+import Playlist from "./pages/playlist/playlist.component";
+
+function App({ addPlaylist }) {
+  useEffect(() => {
+    // getData(<playlistID>);
+    getPlaylists();
+  });
+  const getPlaylists = async () => {
+    const playlists = await retrievePlaylist();
+    playlists.map((playlist) => {
+      addPlaylist(playlist.data());
+      return 0;
+    });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        <Route path="/playlist/:playlistID" component={Playlist} />
+      </Switch>
     </div>
   );
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  addPlaylist: (playlist) => dispatch(addPlaylist(playlist)),
+});
+
+export default connect(null, mapDispatchToProps)(App);

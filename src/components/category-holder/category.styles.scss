@@ -1,0 +1,19 @@
+.category-section {
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-bottom: 50px;
+  .category-title {
+    display: block;
+    width: max-content;
+    font-weight: bold;
+    font-size: 26px;
+  }
+  .playlists {
+    margin-top: 50px;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}

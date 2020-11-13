@@ -1,0 +1,34 @@
+.playlist-container {
+  margin-top: 100px;
+  width: 100%;
+  display: block;
+  .playlist-description-container {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: end;
+    margin-bottom: 50px;
+    grid-gap: 20px;
+    color: white;
+
+    .playlist-image-big {
+      width: 300px;
+      border-radius: 10px;
+    }
+
+    .playlist-description-text {
+      .playlist-name-big {
+        display: block;
+        font-size: 40px;
+        font-weight: bold;
+      }
+      .playlist-author-big {
+        display: block;
+        font-size: 24px;
+      }
+    }
+  }
+  .tracks-container {
+    width: 100%;
+    padding-left: 20px;
+  }
+}
