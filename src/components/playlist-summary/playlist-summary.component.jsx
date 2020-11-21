@@ -7,7 +7,7 @@ const PlaylistSummary = ({ history, playlistData, color }) => {
     <div
       className="playlist-summary-container"
       style={color}
-      onClick={() => history.push(`/playlist/${playlistData.id}`)}
+      onClick={() => history.push(`/${playlistData.id}`)}
     >
       <img className="playlist-image" alt="playlist" src={playlistData.image} />
       <span className="playlist-title">{playlistData.name}</span>

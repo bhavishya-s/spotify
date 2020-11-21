@@ -11,17 +11,45 @@ const PlaylistCategory = ({ playlists, color }) => {
     <>
       <div className="category-section">
         <span className="category-title" style={color}>
-          category.title
+          NEWLY ADDED
         </span>
         <div className="playlists">
-          {playlists.map((playlist, idx) => (
-            <PlaylistSummary playlistData={playlist} key={idx} color={color} />
-          ))}
+          {categoryNew(playlists)
+            .filter((i, inx) => inx < 5)
+            .map((playlist, idx) => (
+              <PlaylistSummary
+                playlistData={playlist}
+                key={idx}
+                color={color}
+              />
+            ))}
         </div>
-        <div className="playlists"></div>
+      </div>
+      <div className="category-section">
+        <span className="category-title" style={color}>
+          OTHERS
+        </span>
+        <div className="playlists">
+          {playlists
+            .filter((i, inx) => inx < 6)
+            .map((playlist, idx) => (
+              <PlaylistSummary
+                playlistData={playlist}
+                key={idx}
+                color={color}
+              />
+            ))}
+        </div>
       </div>
     </>
   );
+};
+
+const categoryNew = (playlists) => {
+  return playlists.sort((a, b) => {
+    if (a.addedAt.toDate() > b.addedAt.toDate()) return -1;
+    else return 1;
+  });
 };
 
 const mapStateToProps = (state) => ({

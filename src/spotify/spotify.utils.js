@@ -48,6 +48,7 @@ const getData = async (playlistID) => {
   };
   addPlaylist(finalisedData);
   console.log(finalisedData);
+  return finalisedData;
 };
 
 export { getData };

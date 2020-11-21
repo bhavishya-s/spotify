@@ -20,8 +20,11 @@ const addPlaylist = async (playlistData) => {
     });
 };
 
-const retrievePlaylist = async () => {
-  const playlistRef = await db.collection("playlists").limit(5);
+const retrievePlaylist = async (orderField = "") => {
+  const playlistRef =
+    orderField.length > 0
+      ? await db.collection("playlists").orderBy(orderField)
+      : await db.collection("playlists");
   const playlists = await playlistRef.get();
   return playlists.docs;
 };

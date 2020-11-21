@@ -12,6 +12,9 @@ body {
   font-family: "Lato", sans-serif;
   background: linear-gradient(90deg, #333745, #1f363d);
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 
 #root {
   height: 100%;

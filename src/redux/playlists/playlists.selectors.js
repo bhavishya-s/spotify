@@ -9,6 +9,5 @@ export const playlistsSelector = createSelector(
 
 export const singlePlaylistSelector = (collectionURLParams) =>
   createSelector(playlistsSelector, (playlist) => {
-    console.log(collectionURLParams);
     return playlist.filter((p) => p.id === collectionURLParams);
   });

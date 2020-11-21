@@ -1,4 +1,9 @@
 .App {
   width: 1366px;
+  height: 100%;
   margin: 0 auto;
+}
+*::selection {
+  color: violet;
+  background-color: #b18ad020;
 }

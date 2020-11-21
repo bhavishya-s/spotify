@@ -1,15 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { singlePlaylistSelector } from "../../redux/playlists/playlists.selectors";
-
+import Spinner from "../../components/spinner/spinner.component";
 import TrackSummary from "../../components/track-summary/track-summary.component";
 
 import "./playlist.styles.scss";
 
 const Playlist = ({ getSinglePlaylist, match }) => {
-  const playlist = getSinglePlaylist[0];
-  console.log(playlist);
-  return (
+  var playlist = getSinglePlaylist[0];
+
+  return playlist ? (
     <>
       <div className="playlist-container">
         <div className="playlist-description-container">
@@ -30,6 +30,8 @@ const Playlist = ({ getSinglePlaylist, match }) => {
         </div>
       </div>
     </>
+  ) : (
+    <Spinner />
   );
 };
 

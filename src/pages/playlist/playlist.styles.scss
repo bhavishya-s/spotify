@@ -1,8 +1,11 @@
 .playlist-container {
-  margin-top: 100px;
+  margin-top: 50px;
   width: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
   .playlist-description-container {
+    height: max-content;
     display: grid;
     grid-template-columns: max-content max-content;
     align-items: end;
@@ -28,7 +31,12 @@
     }
   }
   .tracks-container {
+    max-height: 60vh;
+    overflow-y: scroll;
     width: 100%;
     padding-left: 20px;
+  }
+  .tracks-container::-webkit-scrollbar {
+    display: none;
   }
 }

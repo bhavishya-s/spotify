@@ -7,12 +7,12 @@ import { retrievePlaylist } from "./firebase/firebase.utils.js";
 // import { getData } from "./spotify/spotify.utils";
 import { addPlaylist } from "./redux/playlists/playlists.actions";
 
+import Header from "./components/header/header.component";
 import Homepage from "./pages/homepage/homepage.component";
 import Playlist from "./pages/playlist/playlist.component";
 
 function App({ addPlaylist }) {
   useEffect(() => {
-    // getData(<playlistID>);
     getPlaylists();
   });
   const getPlaylists = async () => {
@@ -25,9 +25,10 @@ function App({ addPlaylist }) {
 
   return (
     <div className="App">
+      <Header />
       <Switch>
         <Route exact path="/" component={Homepage} />
-        <Route path="/playlist/:playlistID" component={Playlist} />
+        <Route path="/:playlistID" component={Playlist} />
       </Switch>
     </div>
   );
