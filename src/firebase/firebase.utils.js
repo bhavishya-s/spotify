@@ -29,4 +29,10 @@ const retrievePlaylist = async (orderField = "") => {
   return playlists.docs;
 };
 
-export { addPlaylist, retrievePlaylist };
+const ratePlaylist = async (playlistID) => {
+  const playlistRef = await db.doc(`playlists/${playlistID}`);
+  await playlistRef.update({
+    rating: (await playlistRef.get()).data().rating + 1,
+  });
+};
+export { addPlaylist, retrievePlaylist, ratePlaylist };

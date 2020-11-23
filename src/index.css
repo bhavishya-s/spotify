@@ -10,7 +10,7 @@ body {
 
 body {
   font-family: "Lato", sans-serif;
-  background: linear-gradient(90deg, #333745, #1f363d);
+  background: linear-gradient(120deg, #64719e, #1f847a);
 }
 body::-webkit-scrollbar {
   display: none;

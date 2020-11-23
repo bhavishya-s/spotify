@@ -9,7 +9,7 @@
   margin: 0px auto;
   //   background-color: #b18ad0;
   background-color: #faaca8;
-  background-image: linear-gradient(19deg, #b18ad0 0%, #ddd6f3 100%);
+  background-image: linear-gradient(19deg, #dd6990 0%, #fbafa8 100%);
 
   border-radius: 0 0 5px 5px;
   .navigation {
@@ -44,11 +44,8 @@
       font-weight: bolder;
       cursor: pointer;
     }
-    .on-left:hover {
-      color: rgb(156, 31, 156);
-    }
-    .on-right:hover {
-      color: rgb(116, 57, 165);
+    ul:hover {
+      color: white;
     }
   }
 }

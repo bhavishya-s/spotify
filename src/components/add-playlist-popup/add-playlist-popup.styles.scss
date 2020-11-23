@@ -3,6 +3,7 @@
   box-sizing: border-box;
   padding: 20px;
   background-color: white;
+  background: linear-gradient(19deg, #dd6990 0%, #fbafa8 100%);
   width: max-content;
   height: max-content;
   position: absolute;
@@ -13,7 +14,7 @@
     display: block;
     margin: 10px 0;
     padding: 10px 10px;
-    border: 1px solid #2d2d2d;
+    border: none;
     border-radius: 5px;
     letter-spacing: 0.5px;
   }
@@ -21,12 +22,12 @@
     width: 100%;
     padding: 5px;
     text-align: left;
-    background: #557079;
+    background: #ffffff61;
     border-radius: 5px;
     padding: 10px 10px;
     cursor: pointer;
     border: none;
     font-weight: bold;
-    color: #fff;
+    color: rgb(48, 48, 48);
   }
 }

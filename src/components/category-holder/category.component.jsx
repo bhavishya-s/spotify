@@ -30,15 +30,9 @@ const PlaylistCategory = ({ playlists, color }) => {
           OTHERS
         </span>
         <div className="playlists">
-          {playlists
-            .filter((i, inx) => inx < 6)
-            .map((playlist, idx) => (
-              <PlaylistSummary
-                playlistData={playlist}
-                key={idx}
-                color={color}
-              />
-            ))}
+          {playlists.map((playlist, idx) => (
+            <PlaylistSummary playlistData={playlist} key={idx} color={color} />
+          ))}
         </div>
       </div>
     </>

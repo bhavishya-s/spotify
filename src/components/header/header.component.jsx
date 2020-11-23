@@ -20,9 +20,9 @@ const Header = ({ history }) => {
           </ul>
         </div>
         <div className="nav-right">
-          <ul className="nav-item on-right">Log In</ul>
+          <ul className="nav-item on-right">LOG IN</ul>
           <ul className="nav-item on-right" onClick={toggleLogIn}>
-            Add Playlist
+            ADD PLAYLIST
           </ul>
           {loginPopup ? <AddPlaylistPopup /> : null}
         </div>

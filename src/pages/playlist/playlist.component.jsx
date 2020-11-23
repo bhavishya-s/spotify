@@ -1,12 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
+
+import "./playlist.styles.scss";
 import { singlePlaylistSelector } from "../../redux/playlists/playlists.selectors";
+import { ratePlaylist } from "../../redux/playlists/playlists.actions";
+
 import Spinner from "../../components/spinner/spinner.component";
 import TrackSummary from "../../components/track-summary/track-summary.component";
 
-import "./playlist.styles.scss";
+import { ReactComponent as Heart } from "./like.svg";
 
-const Playlist = ({ getSinglePlaylist, match }) => {
+const Playlist = ({ getSinglePlaylist, ratePlaylist, match }) => {
   var playlist = getSinglePlaylist[0];
 
   return playlist ? (
@@ -21,6 +25,13 @@ const Playlist = ({ getSinglePlaylist, match }) => {
           <div className="playlist-description-text">
             <span className="playlist-name-big">{playlist.name}</span>
             <span className="playlist-author-big">{playlist.owner.name}</span>
+            <span className="playlist-rating-big">
+              <Heart
+                className="playlist-heart"
+                onClick={() => ratePlaylist(playlist.id)}
+              />
+              {playlist.rating}
+            </span>
           </div>
         </div>
         <div className="tracks-container">
@@ -41,4 +52,8 @@ const mapStateToProps = (state, ownProps) => ({
   ),
 });
 
-export default connect(mapStateToProps)(Playlist);
+const mapDispatchToProps = (dispatch) => ({
+  ratePlaylist: (playlistID) => dispatch(ratePlaylist(playlistID)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Playlist);

@@ -1,0 +1,31 @@
+.overlay {
+  position: absolute;
+  display: flex;
+  width: 1366px;
+  height: 100%;
+  background: #00000033;
+  justify-content: center;
+  align-items: center;
+
+  .alert-container {
+    width: 400px;
+    height: max-content;
+    background: #1b5b7b;
+    color: white;
+    border-radius: 5px;
+
+    .alert-header {
+      background-color: #2b85b1;
+      border-radius: 5px 5px 0 0;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .alert-message {
+      padding: 5px 10px;
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+}
