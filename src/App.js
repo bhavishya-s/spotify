@@ -10,6 +10,7 @@ import { addPlaylist } from "./redux/playlists/playlists.actions";
 import Header from "./components/header/header.component";
 import Homepage from "./pages/homepage/homepage.component";
 import Playlist from "./pages/playlist/playlist.component";
+import LoginPage from "./pages/login/login.component";
 
 function App({ addPlaylist }) {
   useEffect(() => {
@@ -26,10 +27,13 @@ function App({ addPlaylist }) {
   return (
     <div className="App">
       <Header />
-      <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route path="/:playlistID" component={Playlist} />
-      </Switch>
+      <div className="page-wrapper">
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/:playlistID/" component={Playlist} />
+        </Switch>
+      </div>
     </div>
   );
 }

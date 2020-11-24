@@ -11,6 +11,23 @@ const PlaylistCategory = ({ playlists, color }) => {
     <>
       <div className="category-section">
         <span className="category-title" style={color}>
+          HIGHLY RATED
+        </span>
+        <div className="playlists">
+          {categoryNew(playlists)
+            .sort((a, b) => b.rating - a.rating)
+            .filter((i, inx) => inx < 5)
+            .map((playlist, idx) => (
+              <PlaylistSummary
+                playlistData={playlist}
+                key={idx}
+                color={color}
+              />
+            ))}
+        </div>
+      </div>
+      <div className="category-section">
+        <span className="category-title" style={color}>
           NEWLY ADDED
         </span>
         <div className="playlists">

@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { setCurrentUser } from "../../redux/user/user.actions";
+
+import { handleLogin } from "../../spotify/spotify.utils";
 
 import "./header.styles.scss";
 
 import AddPlaylistPopup from "../add-playlist-popup/add-playlist-popup.component";
 
-const Header = ({ history }) => {
+const Header = ({ history, currentUser, logoutUser }) => {
   const [loginPopup, toggleLoginPopup] = useState(false);
   const toggleLogIn = () => {
     toggleLoginPopup(!loginPopup);
   };
-
   return (
     <div className="header-container">
       <div className="navigation">
@@ -20,15 +24,28 @@ const Header = ({ history }) => {
           </ul>
         </div>
         <div className="nav-right">
-          <ul className="nav-item on-right">LOG IN</ul>
-          <ul className="nav-item on-right" onClick={toggleLogIn}>
-            ADD PLAYLIST
-          </ul>
+          {currentUser ? (
+            <>
+              <ul className="nav-item on-right" onClick={() => logoutUser()}>
+                {currentUser.name}
+              </ul>
+              <ul className="nav-item on-right" onClick={toggleLogIn}>
+                Add Playlist
+              </ul>
+            </>
+          ) : (
+            <ul className="nav-item on-right" onClick={() => handleLogin()}>
+              LOG IN
+            </ul>
+          )}
           {loginPopup ? <AddPlaylistPopup /> : null}
         </div>
       </div>
     </div>
   );
 };
-
-export default withRouter(Header);
+const mapDispatchToProps = (dispatch) => ({
+  logoutUser: (user = null) => dispatch(setCurrentUser(user)),
+});
+const mapStateToProps = (state) => ({ currentUser: state.user.currentUser });
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

@@ -35,4 +35,10 @@ const ratePlaylist = async (playlistID) => {
     rating: (await playlistRef.get()).data().rating + 1,
   });
 };
-export { addPlaylist, retrievePlaylist, ratePlaylist };
+
+const addUser = async (finalUserData) => {
+  const userRef = await db.doc(`users/${finalUserData.id}`);
+  const get = await userRef.get();
+  if (!get.exists) userRef.set(finalUserData);
+};
+export { addPlaylist, retrievePlaylist, ratePlaylist, addUser };

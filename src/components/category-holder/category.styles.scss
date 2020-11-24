@@ -7,12 +7,15 @@
     width: max-content;
     font-weight: bold;
     font-size: 26px;
+    margin-left: 60px;
   }
   .playlists {
     margin-top: 50px;
     width: 100%;
     height: max-content;
     display: flex;
+    box-sizing: border-box;
+    padding-left: 60px;
     flex-wrap: wrap;
     align-items: center;
   }

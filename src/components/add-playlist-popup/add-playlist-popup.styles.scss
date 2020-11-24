@@ -4,11 +4,12 @@
   padding: 20px;
   background-color: white;
   background: linear-gradient(19deg, #dd6990 0%, #fbafa8 100%);
+  background-repeat: no-repeat;
   width: max-content;
   height: max-content;
   position: absolute;
   top: 65px;
-  right: 600px;
+  right: 5;
   border-radius: 5px;
   .playlist-input {
     display: block;

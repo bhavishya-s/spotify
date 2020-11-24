@@ -1,6 +1,7 @@
 .playlist-container {
   margin-top: 50px;
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
@@ -12,7 +13,7 @@
     margin-bottom: 50px;
     grid-gap: 20px;
     color: white;
-
+    transition: all 0.3s;
     .playlist-image-big {
       width: 300px;
       border-radius: 10px;
@@ -51,6 +52,7 @@
     background-color: #93aebd38;
     background-blend-mode: color-dodge;
     border-radius: 5px;
+    box-shadow: 1px 1px 11px 3px #00000014;
   }
   .tracks-container::-webkit-scrollbar {
     display: none;

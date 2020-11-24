@@ -1,9 +1,12 @@
 .App {
-  width: 1366px;
   height: 100%;
   margin: 0 auto;
 }
+.page-wrapper {
+  width: 1366px;
+  margin: 0 auto;
+}
 *::selection {
-  color: violet;
-  background-color: #b18ad020;
+  color: pink;
+  background-color: rgba(216, 112, 147, 0.5);
 }

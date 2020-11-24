@@ -16,12 +16,16 @@ const AddPlaylistPopup = () => {
       )
     ) {
       const playlistID = playlistField.split("/")[4].match(/\w*/)[0];
-      getData(playlistID).then((d) => console.log(d));
-      window.location.reload(false);
+      getData(playlistID).then((d) => {
+        console.log(d);
+        setTimeout(() => window.location.reload(false), 1000);
+      });
     } else if (/^\w*$/.test(playlistField)) {
       const playlistID = playlistField;
-      getData(playlistID).then((d) => console.log(d));
-      window.location.reload(false);
+      getData(playlistID).then((d) => {
+        console.log(d);
+        setTimeout(() => window.location.reload(false), 1000);
+      });
     } else {
       console.log("error");
     }
