@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { setCurrentUser } from "../../redux/user/user.actions";
+import { logoutUser } from "../../redux/user/user.actions";
 
 import { handleLogin } from "../../spotify/spotify.utils";
 
@@ -45,7 +45,7 @@ const Header = ({ history, currentUser, logoutUser }) => {
   );
 };
 const mapDispatchToProps = (dispatch) => ({
-  logoutUser: (user = null) => dispatch(setCurrentUser(user)),
+  logoutUser: () => dispatch(logoutUser()),
 });
 const mapStateToProps = (state) => ({ currentUser: state.user.currentUser });
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
