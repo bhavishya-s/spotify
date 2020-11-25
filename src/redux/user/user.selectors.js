@@ -1,10 +1,8 @@
 import { createSelector } from "reselect";
 
-const selectUser = (state) => state.user;
+export const selectUser = (state) => state.user;
 
-const selectCurrentUser = createSelector(selectUser, (user) => user.currenUser);
-
-const selectRatedPlaylists = createSelector(
-  selectCurrentUser,
-  (currentUser) => currentUser.ratedPlaylists
+export const selectCurrentUser = createSelector(
+  selectUser,
+  (user) => user.currentUser
 );

@@ -5,7 +5,7 @@ export const addPlaylist = (item) => ({
   payload: item,
 });
 
-export const ratePlaylist = (item) => ({
+export const addPlaylistRating = (playlistID) => ({
   type: actionTypes.LIKE_PLAYLIST,
-  payload: item,
+  payload: playlistID,
 });

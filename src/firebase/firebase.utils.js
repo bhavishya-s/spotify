@@ -36,9 +36,29 @@ const ratePlaylist = async (playlistID) => {
   });
 };
 
+const addUserRated = async (currentUser, playlistID) => {
+  const userRef = await db.doc(`users/${currentUser.id}`);
+  await userRef.update({
+    ratedPlaylist: firebase.firestore.FieldValue.arrayUnion(playlistID),
+  });
+};
+
 const addUser = async (finalUserData) => {
   const userRef = await db.doc(`users/${finalUserData.id}`);
   const get = await userRef.get();
   if (!get.exists) userRef.set(finalUserData);
 };
-export { addPlaylist, retrievePlaylist, ratePlaylist, addUser };
+
+const getUserData = async (user) => {
+  const userRef = await db.doc(`users/${user.id}`);
+  const get = await userRef.get();
+  if (get.exists) return await get.data();
+};
+export {
+  addPlaylist,
+  retrievePlaylist,
+  ratePlaylist,
+  addUserRated,
+  addUser,
+  getUserData,
+};

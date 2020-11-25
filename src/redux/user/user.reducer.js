@@ -1,5 +1,7 @@
 import actionTypes from "./user.types";
-const INITIAL_STATE = { currentUser: undefined };
+import { addUserRated } from "../../firebase/firebase.utils";
+
+const INITIAL_STATE = {};
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -9,6 +11,15 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.logoutUser:
       localStorage.removeItem("currentUser");
       return { ...state, currentUser: null };
+    case actionTypes.ratePlaylist:
+      addUserRated(state.currentUser, action.payload);
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          ratedPlaylist: [...state.currentUser.ratedPlaylist, action.payload],
+        },
+      };
     default:
       return { ...state };
   }

@@ -1,20 +1,22 @@
 import React from "react";
-
+import Music from "../../music.svg";
 import "./track-summary.styles.scss";
 
 const TrackSummary = ({ track }) => {
   return (
     <div className="track-container">
-      <img
-        src={track.album.images[0].url}
-        alt="album cover"
-        className="album-img"
-      />
+      {
+        <img
+          src={track.album.images[0] ? track.album.images[0].url : Music}
+          alt="album cover"
+          className="album-img"
+        />
+      }
       <div className="track-data">
         <span className="track-name">{track.name}</span>
         <div className="artist-container">
-          {track.artists.map((artist) => (
-            <span className="artist-name" key={artist.id}>
+          {track.artists.map((artist, idx) => (
+            <span className="artist-name" key={idx}>
               {artist.name}
             </span>
           ))}

@@ -7,3 +7,8 @@ export const setCurrentUser = (user) => ({
 export const logoutUser = () => ({
   type: actionTypes.logoutUser,
 });
+
+export const ratePlaylist = (playlistID) => ({
+  type: actionTypes.ratePlaylist,
+  payload: playlistID,
+});

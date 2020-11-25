@@ -1,20 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import "./playlist.styles.scss";
+
 import { singlePlaylistSelector } from "../../redux/playlists/playlists.selectors";
-import { ratePlaylist } from "../../redux/playlists/playlists.actions";
-import { setComponentReference } from "../../redux/components/components.actions";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+
+import { ratePlaylist } from "../../redux/user/user.actions";
+import { addPlaylistRating } from "../../redux/playlists/playlists.actions";
 
 import Spinner from "../../components/spinner/spinner.component";
 import TrackSummary from "../../components/track-summary/track-summary.component";
 
 import { ReactComponent as Heart } from "./like.svg";
 
-const Playlist = ({ getSinglePlaylist, ratePlaylist, setRef, match }) => {
+const Playlist = ({
+  getSinglePlaylist,
+  ratePlaylist,
+  addPlaylistRating,
+  currentUser,
+}) => {
   var playlist = getSinglePlaylist[0];
-  const playlistRef = new React.useRef();
-
+  const [isLiked, setLiked] = useState(false);
+  useEffect(() => {
+    checkIsLiked();
+  });
+  const checkIsLiked = () => {
+    if (currentUser && playlist)
+      if (currentUser.ratedPlaylist.find((p) => playlist.id === p))
+        setLiked(true);
+  };
+  const handleRating = () => {
+    if (currentUser && !isLiked) {
+      addPlaylistRating(playlist.id);
+      ratePlaylist(playlist.id);
+    }
+  };
   return playlist ? (
     <>
       <div className="playlist-container">
@@ -23,16 +44,14 @@ const Playlist = ({ getSinglePlaylist, ratePlaylist, setRef, match }) => {
             src={playlist.image}
             className="playlist-image-big"
             alt="playlistimage"
-            ref={playlistRef}
-            onClick={() => setRef({ playlist: playlistRef.current })}
           />
           <div className="playlist-description-text">
             <span className="playlist-name-big">{playlist.name}</span>
             <span className="playlist-author-big">{playlist.owner.name}</span>
             <span className="playlist-rating-big">
               <Heart
-                className="playlist-heart"
-                onClick={() => ratePlaylist(playlist.id)}
+                className={`${isLiked ? "liked" : "null"} playlist-heart`}
+                onClick={() => handleRating()}
               />
               {playlist.rating}
             </span>
@@ -63,6 +82,7 @@ const Playlist = ({ getSinglePlaylist, ratePlaylist, setRef, match }) => {
 // }
 
 const mapStateToProps = (state, ownProps) => ({
+  currentUser: selectCurrentUser(state),
   getSinglePlaylist: singlePlaylistSelector(ownProps.match.params.playlistID)(
     state
   ),
@@ -70,7 +90,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   ratePlaylist: (playlistID) => dispatch(ratePlaylist(playlistID)),
-  setRef: (playlistRef) => dispatch(setComponentReference(playlistRef)),
+  addPlaylistRating: (playlistID) => dispatch(addPlaylistRating(playlistID)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist);

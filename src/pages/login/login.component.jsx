@@ -5,15 +5,16 @@ import { setCurrentUser } from "../../redux/user/user.actions";
 import Spinner from "../../components/spinner/spinner.component";
 
 import { getUserInfo } from "../../spotify/spotify.utils";
-
+import { getUserData } from "../../firebase/firebase.utils";
 const LoginPage = (props) => {
   const [user, setUser] = useState({});
   const code = new URLSearchParams(props.location.search).get("code");
   const setUserState = async () => {
     if (code) {
       const userData = await getUserInfo(code);
-      setUser(userData);
-      props.setCurrentUser(userData);
+      const u = await getUserData(userData);
+      setUser(u);
+      props.setCurrentUser(u);
       props.history.push("/");
     } else {
       console.log(new URLSearchParams(props.location.search).get("error"));

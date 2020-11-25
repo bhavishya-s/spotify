@@ -58,6 +58,7 @@ export const getUserInfo = async (code) => {
     name: data.display_name,
     email: data.email,
     product: data.product,
+    ratedPlaylist: [],
   };
   addUser(finalUserData);
   return finalUserData;

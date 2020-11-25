@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
-import { retrievePlaylist } from "./firebase/firebase.utils.js";
-// import { getData } from "./spotify/spotify.utils";
+import { retrievePlaylist, getUserData } from "./firebase/firebase.utils.js";
+
 import { addPlaylist } from "./redux/playlists/playlists.actions";
 import { setCurrentUser } from "./redux/user/user.actions";
 
@@ -19,10 +19,12 @@ function App({ addPlaylist, setUser }) {
     checkUser();
   });
 
-  const checkUser = () => {
+  const checkUser = async () => {
     const currentUser = localStorage.getItem("currentUser");
     if (currentUser) {
-      setUser(JSON.parse(currentUser));
+      console.log();
+      const user = await getUserData(JSON.parse(currentUser));
+      setUser(user);
     }
   };
   const getPlaylists = async () => {
@@ -51,5 +53,4 @@ const mapDispatchToProps = (dispatch) => ({
   addPlaylist: (playlist) => dispatch(addPlaylist(playlist)),
   setUser: (user) => dispatch(setCurrentUser(user)),
 });
-
 export default connect(null, mapDispatchToProps)(App);
