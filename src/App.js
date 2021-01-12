@@ -12,7 +12,7 @@ import Header from "./components/header/header.component";
 import Homepage from "./pages/homepage/homepage.component";
 import Playlist from "./pages/playlist/playlist.component";
 import LoginPage from "./pages/login/login.component";
-
+import UserProfilePage from "./pages/user-profile/user-profile.component";
 function App({ addPlaylist, setUser }) {
   useEffect(() => {
     getPlaylists();
@@ -21,8 +21,7 @@ function App({ addPlaylist, setUser }) {
 
   const checkUser = async () => {
     const currentUser = localStorage.getItem("currentUser");
-    if (currentUser) {
-      console.log();
+    if (currentUser && currentUser !== "undefined") {
       const user = await getUserData(JSON.parse(currentUser));
       setUser(user);
     }
@@ -42,6 +41,7 @@ function App({ addPlaylist, setUser }) {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/user/:userID" component={UserProfilePage} />
           <Route exact path="/:playlistID/" component={Playlist} />
         </Switch>
       </div>

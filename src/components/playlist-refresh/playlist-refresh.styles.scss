@@ -1,0 +1,18 @@
+.refresh-button {
+  display: flex;
+  place-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  background: #0000001a;
+  width: max-content;
+  border-radius: 10px;
+  padding: 10px;
+  text-transform: uppercase;
+
+  .refresh-svg {
+    width: 20px;
+    height: auto;
+    fill: white;
+    display: inline-block;
+  }
+}

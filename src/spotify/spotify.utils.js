@@ -1,5 +1,9 @@
 import btoa from "btoa";
-import { addPlaylist, addUser } from "../firebase/firebase.utils";
+import {
+  addPlaylist,
+  updatePlaylist,
+  addUser,
+} from "../firebase/firebase.utils";
 const config = require("./spotify.config.json");
 
 const getToken = async () => {
@@ -64,7 +68,7 @@ export const getUserInfo = async (code) => {
   return finalUserData;
 };
 
-export const getData = async (playlistID) => {
+export const getPlaylistData = async (playlistID) => {
   const token = await getToken();
 
   const playlistRequest = await fetch(
@@ -92,7 +96,16 @@ export const getData = async (playlistID) => {
     tracks: tracks_raw.tracks,
     uri: tracks_raw.uri,
   };
-  addPlaylist(finalisedData);
   console.log(finalisedData);
   return finalisedData;
+};
+
+export const addNewPlaylist = async (playlistID) => {
+  const data = await getPlaylistData(playlistID);
+  addPlaylist(data);
+};
+
+export const updatePlaylistData = async (playlistID) => {
+  const data = await getPlaylistData(playlistID);
+  updatePlaylist(data);
 };

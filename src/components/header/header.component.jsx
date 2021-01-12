@@ -26,11 +26,18 @@ const Header = ({ history, currentUser, logoutUser }) => {
         <div className="nav-right">
           {currentUser ? (
             <>
-              <ul className="nav-item on-right" onClick={() => logoutUser()}>
+              <ul
+                className="nav-item on-right"
+                onClick={() => history.push(`/user/${currentUser.id}`)}
+              >
                 {currentUser.name}
               </ul>
+
               <ul className="nav-item on-right" onClick={toggleLogIn}>
                 Add Playlist
+              </ul>
+              <ul className="nav-item on-right" onClick={() => logoutUser()}>
+                Log Out
               </ul>
             </>
           ) : (

@@ -22,7 +22,7 @@ const LoginPage = (props) => {
   };
   useEffect(() => {
     setUserState();
-  }, []);
+  });
   return Object.keys(user).length === 0 ? (
     <Spinner />
   ) : (

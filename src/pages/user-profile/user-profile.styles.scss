@@ -1,0 +1,37 @@
+.section {
+  margin: 10px 0px;
+  display: flex;
+  height: 256px;
+}
+.user-data-section {
+  .user-profile-picture-container {
+    height: 256px;
+    width: 256px;
+    border-radius: 10px;
+    background-color: #faaca8;
+  }
+  .user-details-container {
+    margin-left: 20px;
+    width: auto;
+    border: #faaca8 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+    color: #faaca8;
+    flex-grow: 1;
+  }
+}
+
+.user-rated-playlist-section {
+  flex-direction: column;
+  .section-title {
+    height: min-content;
+  }
+  .user-rated-playlists-container {
+    width: auto;
+    border: #faaca8 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+    color: #faaca8;
+    flex-grow: 1;
+  }
+}

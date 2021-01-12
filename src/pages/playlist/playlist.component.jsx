@@ -11,6 +11,7 @@ import { addPlaylistRating } from "../../redux/playlists/playlists.actions";
 
 import Spinner from "../../components/spinner/spinner.component";
 import TrackSummary from "../../components/track-summary/track-summary.component";
+import RefreshPlaylist from "../../components/playlist-refresh/playlist-refresh.component";
 
 import { ReactComponent as Heart } from "./like.svg";
 
@@ -48,13 +49,16 @@ const Playlist = ({
           <div className="playlist-description-text">
             <span className="playlist-name-big">{playlist.name}</span>
             <span className="playlist-author-big">{playlist.owner.name}</span>
-            <span className="playlist-rating-big">
-              <Heart
-                className={`${isLiked ? "liked" : "null"} playlist-heart`}
-                onClick={() => handleRating()}
-              />
-              {playlist.rating}
-            </span>
+            <div className="bottom-row-container">
+              <span className="playlist-rating-big">
+                <Heart
+                  className={`${isLiked ? "liked" : "null"} playlist-heart`}
+                  onClick={() => handleRating()}
+                />
+                <span className="rating-text">{playlist.rating}</span>
+              </span>
+              <RefreshPlaylist playlistID={playlist.id} />
+            </div>
           </div>
         </div>
         <div className="tracks-container">
@@ -68,18 +72,6 @@ const Playlist = ({
     <Spinner />
   );
 };
-
-// function OnScroll(div) {
-//   // var d1 = document.getElementsByClassName("tracks-container");
-//   // var d2 = document.getElementsByClassName("playlist-container");
-//   // //F
-//   var h = div.target.offsetHeight;
-//   console.log(h);
-//   h = h / 2;
-//   div.target.style.height = `${h}px`;
-//   console.log(`${h}`);
-//   // d1[0].scrollTop = d2[0].scrollTop;
-// }
 
 const mapStateToProps = (state, ownProps) => ({
   currentUser: selectCurrentUser(state),

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-import { getData } from "../../spotify/spotify.utils";
+import { addNewPlaylist } from "../../spotify/spotify.utils";
 import "./add-playlist-popup.styles.scss";
 
 // import AlertBox from "../alert-box/alert-box.component";
@@ -16,13 +15,13 @@ const AddPlaylistPopup = () => {
       )
     ) {
       const playlistID = playlistField.split("/")[4].match(/\w*/)[0];
-      getData(playlistID).then((d) => {
+      addNewPlaylist(playlistID).then((d) => {
         console.log(d);
         setTimeout(() => window.location.reload(false), 1000);
       });
     } else if (/^\w*$/.test(playlistField)) {
       const playlistID = playlistField;
-      getData(playlistID).then((d) => {
+      addNewPlaylist(playlistID).then((d) => {
         console.log(d);
         setTimeout(() => window.location.reload(false), 1000);
       });

@@ -20,6 +20,14 @@ const addPlaylist = async (playlistData) => {
     });
 };
 
+const updatePlaylist = async (playlistData) => {
+  const playlistRef = await db.collection("playlists");
+  const playlist = playlistRef.doc(playlistData.id);
+  playlist.update(playlistData).catch((err) => {
+    console.log("error.");
+  });
+};
+
 const retrievePlaylist = async (orderField = "") => {
   const playlistRef =
     orderField.length > 0
@@ -54,8 +62,10 @@ const getUserData = async (user) => {
   const get = await userRef.get();
   if (get.exists) return await get.data();
 };
+
 export {
   addPlaylist,
+  updatePlaylist,
   retrievePlaylist,
   ratePlaylist,
   addUserRated,
